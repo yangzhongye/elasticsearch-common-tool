@@ -1,5 +1,6 @@
 # elasticsearch-search-util
 基于spring boot 
+
 elasticsearch 6.1.2
 
 Elasticsearch通用封装详细设计
@@ -24,25 +25,37 @@ Elasticsearch通用封装详细设计
 
 二．查询类详解
 	
-	1.创建ParamModel使用and() or() not() 三种方法，这些方法会返回这个类一个新的对象，分别对应了三种不同的连接符，多个查询拼接的逻辑是and、		or、还是not 然后通过field方法设置要查询的字段名称，调用eq方法代表是等于计算，参数为等值计算的值，gt为大于运算，gte为大于等于计算，lt为小于计算，lte为小于等于计算，like为包含计算，match为匹配计算
+	
+	1.创建ParamModel使用and() or() not() 三种方法，这些方法会返回这个类一个新的对象，分别对应了三
+	种不同的连接符，多个查询拼接的	逻辑是and、		or、还是not 然后通过field方法设置要查询的字
+	段名称，调用eq方法代表是等于计算，参数为等值计算的值，gt为大于	运算，gte为大于等于计算，lt为
+	小于计算，lte为小于等于计算，like为包含计算，match为匹配计算
 
-	2.QueryModel为查询筛选类 使用时主要是创建了ParamModel的list后放入，其他参数size代表查询的条数，from为开始的条数 这俩参数配合可实现分页操作，sortField为排序字段，order为排序策略 （desc为降序，asc为升序）
+	2.QueryModel为查询筛选类 使用时主要是创建了ParamModel的list后放入，其他参数size代表查询的条
+	数，from为开始的条数 这俩参数	配合可实现分页操作，sortField为排序字段，order为排序策
+	略 （desc为降序，asc为升序）
 
-	3.FieldModel 为对应要查询的字段设置类，field成员变量为要统计的字段名，statisticType为统计类型字段（包括基数CARDINALITY、总和SUM、平均数AVG、最大值MAX、最小值MIN、百分比计算PERCENTILES），script为是否为脚本字段（此值为true的话，则field字段为计算脚本），missing为缺失值设置后对应这个值的数据不计入计算，filter为QueryModel类型的对象，可针对筛选后的结果对此字段计算时再进行一次数据筛选，然后再进行计算
+	3.FieldModel 为对应要查询的字段设置类，field成员变量为要统计的字段名，statisticType为统计类
+	型字段（包括基数CARDINALITY、	总和SUM、平均数AVG、最大值MAX、最小值MIN、百分比
+	计算PERCENTILES），script为是否为脚本字段（此值为true的话，则field字段为	计算脚本），missing
+	为缺失值设置后对应这个值的数据不计入计算，filter为QueryModel类型的对象，可针对筛选后的结果对此字段
+	计算时 再进行一次数据筛选，然后再进行计算
 
 三.查询示例
+
 1.查询例子的数据为
-name	age	birthday	class
-宋江1	17	1992-02-15	1
-宋江10	29	1990-03-21	3
-宋江11	29	1990-03-21	3
-宋江12	29	1990-03-21	3
-宋江13	29	1990-03-21	3
-宋江2	27	1994-02-15	1
-宋江3	22	1992-02-15	1
-宋江4	26	1991-03-21	1
-宋江5	29	1990-03-21	1
-宋江8	29	1990-03-21	2
+
+	name	age	birthday	class
+	宋江1	17	1992-02-15	1
+	宋江10	29	1990-03-21	3
+	宋江11	29	1990-03-21	3
+	宋江12	29	1990-03-21	3
+	宋江13	29	1990-03-21	3
+	宋江2	27	1994-02-15	1
+	宋江3	22	1992-02-15	1
+	宋江4	26	1991-03-21	1
+	宋江5	29	1990-03-21	1
+	宋江8	29	1990-03-21	2
 
 2. 查询各年龄人数
 
