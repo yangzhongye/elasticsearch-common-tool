@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Implementation-Title: bdp-component-elasticsearch
+Implementation-Version: 0.0.1
+Built-By: yzy
+Implementation-Vendor-Id: com.tass.bdp.component
+Build-Jdk: 1.8.0_152
+Implementation-URL: http://projects.spring.io/spring-boot/bdp-componen
+ t-elasticsearch/
+Created-By: Maven Integration for Eclipse
+Implementation-Vendor: Pivotal Software, Inc.
+

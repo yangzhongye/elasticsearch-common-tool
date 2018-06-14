@@ -1,0 +1,7 @@
+com\tass\bdp\component\elasticsearch\esModel\EsTransportClientFactory.class
+com\tass\bdp\component\elasticsearch\esModel\ParamModel.class
+com\tass\bdp\component\elasticsearch\esModel\EsQueryUtil.class
+com\tass\bdp\component\elasticsearch\esModel\FieldModel.class
+com\tass\bdp\component\elasticsearch\esModel\BaseModel.class
+com\tass\bdp\component\elasticsearch\esModel\QueryModel.class
+com\tass\bdp\component\elasticsearch\esModel\CommonModel.class

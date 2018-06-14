@@ -1,0 +1,1 @@
+mvn deploy:deploy-file -DgroupId=com.tass.bdp.component -DartifactId=bdp-component-elasticsearch -Dversion=0.1 -Dpackaging=jar -Dfile=C:\work\eclipse-workspace\bdp-component-elasticsearch\target\bdp-component-elasticsearch-0.1.jar -Durl=http://192.168.9.13:8082/repository/bdpReleases/ -DrepositoryId=bdpReleases
