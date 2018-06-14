@@ -8,25 +8,28 @@ Elasticsearch通用封装详细设计
  
 1.EsTransportClientFactory为连接客户端工厂类字段，
 方法：
-I．getTransportClient方法 为单例模式获取连接客户端
-II．closeClient方法 关闭客户端
+	I．getTransportClient方法 为单例模式获取连接客户端
+	II．closeClient方法 关闭客户端
 
 2.EsQueryUtil 为主要查询工具类
 	方法：
-I．	commonSearch 通用查询 参数为封装的CommonModel
-II．	fullTextSearch 全文搜索 参数第一个为查询内容Object 第二个参数是可变长String， 可传多个 表示要搜索的字段
-3.esModel下为封装的查询条件model类
-I．		BaseModel 为基本配置类 包括es的地址、端口、索引、类型等
-II． 		ParamModel 为筛选参数类
-III. 	QueryModel 为查询设置类
-IV．	FieldModel 为要查询的字段类
-V．		CommonModel 为通用查询类
+	I．	commonSearch 通用查询 参数为封装的CommonModel
+	II．	fullTextSearch 全文搜索 参数第一个为查询内容Object 第二个参数是可变长String， 可传多个 表示要搜索的字段
+	3.esModel下为封装的查询条件model类
+	I．		BaseModel 为基本配置类 包括es的地址、端口、索引、类型等
+	II． 		ParamModel 为筛选参数类
+	III. 	QueryModel 为查询设置类
+	IV．	FieldModel 为要查询的字段类
+	V．		CommonModel 为通用查询类
 
 二．查询类详解
-	1.创建ParamModel使用and() or() not() 三种方法，这些方法会返回这个类一个新的对象，分别对应了三种不同的连接符，多个查询拼接的逻辑是and、or、还是not
-然后通过field方法设置要查询的字段名称，调用eq方法代表是等于计算，参数为等值计算的值，gt为大于运算，gte为大于等于计算，lt为小于计算，lte为小于等于计算，like为包含计算，match为匹配计算
-2.QueryModel为查询筛选类 使用时主要是创建了ParamModel的list后放入，其他参数size代表查询的条数，from为开始的条数 这俩参数配合可实现分页操作，sortField为排序字段，order为排序策略 （desc为降序，asc为升序）
-3.FieldModel 为对应要查询的字段设置类，field成员变量为要统计的字段名，statisticType为统计类型字段（包括基数CARDINALITY、总和SUM、平均数AVG、最大值MAX、最小值MIN、百分比计算PERCENTILES），script为是否为脚本字段（此值为true的话，则field字段为计算脚本），missing为缺失值设置后对应这个值的数据不计入计算，filter为QueryModel类型的对象，可针对筛选后的结果对此字段计算时再进行一次数据筛选，然后再进行计算
+	
+	1.创建ParamModel使用and() or() not() 三种方法，这些方法会返回这个类一个新的对象，分别对应了三种不同的连接符，多个查询拼接的逻辑是and、		or、还是not 然后通过field方法设置要查询的字段名称，调用eq方法代表是等于计算，参数为等值计算的值，gt为大于运算，gte为大于等于计算，lt为小于计算，lte为小于等于计算，like为包含计算，match为匹配计算
+
+	2.QueryModel为查询筛选类 使用时主要是创建了ParamModel的list后放入，其他参数size代表查询的条数，from为开始的条数 这俩参数配合可实现分页操作，sortField为排序字段，order为排序策略 （desc为降序，asc为升序）
+
+	3.FieldModel 为对应要查询的字段设置类，field成员变量为要统计的字段名，statisticType为统计类型字段（包括基数CARDINALITY、总和SUM、平均数AVG、最大值MAX、最小值MIN、百分比计算PERCENTILES），script为是否为脚本字段（此值为true的话，则field字段为计算脚本），missing为缺失值设置后对应这个值的数据不计入计算，filter为QueryModel类型的对象，可针对筛选后的结果对此字段计算时再进行一次数据筛选，然后再进行计算
+
 三.查询示例
 1.查询例子的数据为
 name	age	birthday	class
@@ -42,9 +45,11 @@ name	age	birthday	class
 宋江8	29	1990-03-21	2
 
 2. 查询各年龄人数
-QueryModel queryModel = new QueryModel();
+
+	
+        QueryModel queryModel = new QueryModel();
         queryModel.setSize(0);
-        
+	
         CommonModel commonModel = new CommonModel();
         commonModel.setQueryModel(queryModel);
         //分组字段
@@ -99,9 +104,11 @@ QueryModel queryModel = new QueryModel();
 }
 
 3. 利用脚本将年龄放大10倍的平均数
-QueryModel queryModel = new QueryModel();
+	
+	
+        QueryModel queryModel = new QueryModel();
         queryModel.setSize(0);
-        
+	
         CommonModel commonModel = new CommonModel();
         commonModel.setQueryModel(queryModel);
         
@@ -145,7 +152,9 @@ QueryModel queryModel = new QueryModel();
 }
 
 4.按着月的直方统计各个月的年龄平均数
-QueryModel queryModel = new QueryModel();
+	
+	
+	    QueryModel queryModel = new QueryModel();
 	    queryModel.setSize(0);
 	    
 	    CommonModel commonModel = new CommonModel();
